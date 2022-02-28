@@ -25,7 +25,13 @@ describe('checksExistsUserAccount', () => {
       response.status = jest.fn((code) => {
         return {
           ...response,
-          statusCode: code
+          statusCode: code,
+          send: jest.fn((obj) => {
+            return {
+              ...response,
+              body: obj
+            }
+          })
         }
       });
 
